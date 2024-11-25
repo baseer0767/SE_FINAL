@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% load static %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+{% block title %}
+course content
+{% endblock title %}
+
+{% block content %}
+ 
+
+  <button type="button" onclick="alert('Button clicked!')">I am Instructor</button>
+
+  <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary my-2" type="submit">Submit Course</button>
+  </form>
+
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}  
+
+{% endblock content %}

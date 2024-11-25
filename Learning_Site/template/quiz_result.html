@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Quiz Results</h1>
+<p>You answered {{ correct_count }} out of 10 questions correctly.</p>
+<p>Course ID: {{ quiz.course.id }}</p>
+
+{% if passed %}
+<form method="GET" action="{% url 'generate_certificate' course_id=quiz.course.id %}">
+    <button type="submit" class="btn btn-success">
+        Download Certificate of Completion
+    </button>
+</form>
+    {% else %}
+        <p>Sorry, you did not pass the quiz. Please try again.</p>
+    {% endif %}
+{% endblock content %}
